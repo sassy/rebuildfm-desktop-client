@@ -1,12 +1,17 @@
 import React from 'react'
 import $ from 'jquery'
 import parser from 'xml2json'
+import Item from './item'
 
 
 export default class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {items:[]};
+  }
+
+  handleSelectItem(item) {
+    this.props.onSelectItem(item);
   }
 
   loadData() {
@@ -23,6 +28,7 @@ export default class Sidebar extends React.Component {
             title : elem.title.replace(/&#40;/g, '(').replace(/&#41;/g, ')'),
             subtitle: elem['itunes:subtitle'],
             url : elem.enclosure.url,
+            link: elem.link
           };
           datas.push(item);
         });
@@ -41,10 +47,8 @@ export default class Sidebar extends React.Component {
   render() {
     var items = this.state.items.map((item) => {
       return (
-        <li className='list-group-item'>
-          <strong>{item.title}</strong>
-          <p>{item.subtitle}</p>
-        </li>
+        <Item title={item.title} subtitle={item.subtitle} link={item.link}
+            onSelectItem={this.handleSelectItem.bind(this)} />
       );
     });
     return(
