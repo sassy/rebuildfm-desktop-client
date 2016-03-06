@@ -47,7 +47,7 @@ export default class Sidebar extends React.Component {
   render() {
     var items = this.state.items.map((item) => {
       return (
-        <Item title={item.title} subtitle={item.subtitle} link={item.link}
+        <Item title={item.title} subtitle={item.subtitle} link={item.link} url={item.url}
             onSelectItem={this.handleSelectItem.bind(this)} />
       );
     });

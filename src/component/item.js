@@ -6,7 +6,7 @@ export default class Item extends React.Component {
   }
 
   handleClick(e) {
-    this.props.onSelectItem(this.props.link);
+    this.props.onSelectItem({link:this.props.link, url:this.props.url});
   }
 
   render() {

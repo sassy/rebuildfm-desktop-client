@@ -6,12 +6,12 @@ import MainContent from './component/maincontent'
 class Content extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {link:"http://rebuild.fm/132/"};
+    this.state = {link:"http://rebuild.fm/132/", url:""};
   }
 
-  selectItem(link) {
-    console.log(this);
-    this.setState({link:link});
+  selectItem(item) {
+    console.log(item);
+    this.setState({link:item.link, url:item.url});
   }
 
   render() {
@@ -19,7 +19,7 @@ class Content extends React.Component {
       <div className="window-content">
         <div className="pane-group">
           <Sidebar onSelectItem={this.selectItem.bind(this)} />
-          <MainContent link={this.state.link} />
+          <MainContent link={this.state.link} url={this.state.url} />
         </div>
       </div>
     );
